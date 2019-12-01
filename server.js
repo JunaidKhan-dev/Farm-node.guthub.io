@@ -36,7 +36,7 @@ const server = http.createServer((req, res) => {
     const overviewTemp = overviewTemplate.replace(/{%ProductCards%}/g, templateForOverview)
     return res.end(overviewTemp)
   } else if (pathname === '/product') {
-    let cardTemp = productDataJson[query.id]
+    const cardTemp = productDataJson[query.id]
     const card = outputTemplate(productTemplate, cardTemp)
     return res.end(card)
   }
@@ -44,6 +44,7 @@ const server = http.createServer((req, res) => {
   return res.end('Page Not Found')
 })
 
-server.listen(3000, () => {
+const PORT = process.env.PORT || 3000
+server.listen(PORT, () => {
   console.log('server is running at 3000')
 })
